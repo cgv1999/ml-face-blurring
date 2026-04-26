@@ -1,0 +1,31 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - data/raw/iris.csv
+      - src/prepare.py
+      - params.yaml
+    outs:
+      - data/processed/processed_data.csv
+  
+  train:
+    cmd: python src/train.py
+    deps:
+      - data/processed/processed_data.csv
+      - src/train.py
+      - params.yaml
+    outs:
+      - models/model.pkl
+    metrics:
+      - metrics.json:
+          cache: false
+  
+  blur:
+    cmd: python src/blur_faces.py
+    deps:
+      - data/raw/input.mp4
+      - src/blur_faces.py
+      - models/haarcascade_frontalface_default.xml
+      - params.yaml
+    outs:
+      - data/processed/output.mp4

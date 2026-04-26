@@ -1,0 +1,21 @@
+# Параметры ML-пайплайна
+preprocessing:
+  test_size: 0.2
+  random_state: 42
+
+training:
+  model: RandomForestRegressor
+  max_depth: 10
+  n_estimators: 100
+  random_state: 42
+
+face_blurring:
+  cascade: haarcascade_frontalface_default.xml
+  pixel_size: 100
+  scale_factor: 1.1
+  min_neighbors: 4
+
+video_processing:
+  workers: 4
+  segment_length: 30
+  fps: 30
